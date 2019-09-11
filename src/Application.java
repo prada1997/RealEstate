@@ -17,10 +17,12 @@ public class Application
 		this.CurrentRental = CurrentRental;
 	}
 	
-//	public void Pastoccupation() 
-//	{
-//		
-//	}
+	public void Pastoccupation() 
+	{
+		
+		int i=0;
+	}
+	
 	
 	public String display(){
 		String details = "\n" + 
