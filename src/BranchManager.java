@@ -9,7 +9,7 @@ public class BranchManager extends Employee
 	public BranchManager(String ename, String email, String emptype, String address, long mobno, String eid,String designation) 
 	{
 	super(ename, eid, emptype,designation, address, mobno , email);
-		
+		int test = 0;
 	}
 	
 	
