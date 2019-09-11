@@ -15,6 +15,7 @@ public class Application
 		this.CurrentOccupation = CurrentOccupation;
 		this.PastRental = PastRental;
 		this.CurrentRental = CurrentRental;
+		int app =0;
 	}
 	
 //	public void Pastoccupation() 
