@@ -6,10 +6,9 @@ public class SandERealEstate {
 	public static Scanner input = new Scanner (System.in);
 	public static HashMap<String, Customer> customerRecord = new HashMap<String, Customer>();
 	public static HashMap<String, Employee> employeeRecord =  new HashMap<String, Employee>();
-	public String[][] emp  = new String [3][4]; 
+
+
 	public static void main(String[] args) {
-	
-	 
 		menu();
 	}
 
@@ -140,8 +139,8 @@ public class SandERealEstate {
 		
 		return true;
 	}
-	
-//	
+
+
 	public static boolean addApplication() {
 		System.out.println("Enter your customer Name:");
 		String customerName = input.next();
@@ -220,6 +219,7 @@ public class SandERealEstate {
 			}
 		}
 	}
+
 
 	public static void addEmployee() {
 	System.out.println("Enter the employee name");
