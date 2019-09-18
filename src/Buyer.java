@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Buyer extends Customer implements Serializable
-{
+public class Buyer extends Customer implements Serializable {
 
 	private ArrayList<String> interestedSuburbs = new ArrayList<String>();
 	//private ArrayList<Application> application = new ArrayList<Application>();
