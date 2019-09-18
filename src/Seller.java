@@ -1,14 +1,15 @@
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Seller extends Customer
+public class Seller extends Customer implements Serializable
 {
 	//private ArrayList<Property> property = new ArrayList<Property>();
 	private HashMap<String, Property> property = new HashMap<String, Property>();
 	
-	public Seller(String customerName,String emailID,String customerType) 
-	{
+	protected Seller(String customerName,String emailID,String customerType) throws IOException {
 		super(customerName, emailID, customerType);
 	}
 	

@@ -1,19 +1,19 @@
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class SandERealEstate {
+public class SandERealEstate implements Serializable {
 	
 	public static Scanner input = new Scanner (System.in);
-	public static HashMap<String, Customer> customerRecord = new HashMap<String, Customer>();
-	public static HashMap<String, Employee> employeeRecord =  new HashMap<String, Employee>();
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		menu();
 	}
 
 	
-	public static void menu() {
+	public static void menu() throws IOException {
 		
 		int menuInput = 0;
 		
@@ -36,7 +36,7 @@ public class SandERealEstate {
         			System.out.println("Customer has been added.");
         	}
         	        	
-        	else if(menuInput == 2) {        		
+        	/*else if(menuInput == 2) {
 				for (String id: customerRecord.keySet()) {
 					//changing method to string
 					System.out.println(customerRecord.get(id).ShowDetails());
@@ -68,7 +68,7 @@ public class SandERealEstate {
         	               	
         	else if(menuInput == 7) {
         		displayApplication();
-        	}
+        	}*/
         	
         	else if(menuInput == 8) {
         		System.out.println("$$$ Program Terminated $$$");
@@ -86,7 +86,7 @@ public class SandERealEstate {
 	}
 	
 	
-	public static boolean addCustomer() {
+	public static boolean addCustomer() throws IOException {
 		
 		System.out.println("Enter your Name:");
 		String customerName = input.next();
@@ -98,21 +98,18 @@ public class SandERealEstate {
 							+ "For Example: landlord, vendor, renter, buyer");
 		String customerType = input.next();
 		
-		if(customerType.equals("landlord") || customerType.equals("vendor")) {
-			Seller obj = new Seller(customerName, emailId, customerType);
-			customerRecord.put(obj.getCustomerName(), obj);
-		}
+		if(customerType.equals("landlord") || customerType.equals("vendor"))
+			new Seller(customerName, emailId, customerType);
 		
-		else if(customerType.equals("buyer") || customerType.equals("renter")) {
-			Buyer obj = new Buyer(customerName, emailId, customerType);
-			customerRecord.put(obj.getCustomerName(), obj);
-		}
+		else if(customerType.equals("buyer") || customerType.equals("renter"))
+			new Buyer(customerName, emailId, customerType);
+
 		return true;
 	}
 	
 
 	
-	public static boolean addProperty() {
+	/*public static boolean addProperty() {
 		System.out.println("Enter your customer Name:");
 		String customerName = input.next();
 		Seller obj;
@@ -304,7 +301,7 @@ public class SandERealEstate {
 			System.out.println(employeeRecord.get(id).getDetails());
 			//System.out.println("test");
 		}
-	}
+	}*/
 	
 //	public static boolean addEmployee() {
 //		

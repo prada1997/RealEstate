@@ -1,21 +1,21 @@
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Customer 
+public class Customer implements Serializable
 {
 	private String customerName;
 	private String emailID;	
 	private String customerType;
-	private String uniqueID = "";
-	private int randNum = 0;
+	private String uniqueID;
+	private int randNum;
 				
-	public Customer(String customerName,String emailID,String customerType)
-	{
-					
+	protected Customer(String customerName,String emailID,String customerType) throws IOException {
 		this.customerName = customerName;
 		this.emailID = emailID;
 		this.customerType = customerType;
 		this.uniqueID = customerType.substring(0,3)+generateID();        	
-		
+		Record obj = new Record(this);
 	}	
 	
 	public int generateID() 
