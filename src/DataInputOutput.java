@@ -3,8 +3,8 @@ import java.io.*;
 public class DataInputOutput implements Serializable {
     public void storingData(Customer obj) throws IOException, FileNotFoundException {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("/data/Customers/");
-            ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
+            //FileOutputStream fileOutputStream = ;
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data/Customers/"+ obj.getUniqueID() + ".txt"));
             out.writeObject(obj);
             out.close();
         }
