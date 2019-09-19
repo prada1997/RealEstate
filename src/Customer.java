@@ -1,8 +1,8 @@
 import java.io.IOException;
-import java.io.Serializable;
+
 import java.util.Random;
 
-public class Customer implements Serializable
+public class Customer
 {
 	private String customerName;
 	private String emailID;	
@@ -15,7 +15,7 @@ public class Customer implements Serializable
 		this.emailID = emailID;
 		this.customerType = customerType;
 		this.uniqueID = customerType.substring(0,3)+generateID();        	
-		Record obj = new Record(this);
+		new Record(this);
 	}	
 	
 	public int generateID() 

@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class SandERealEstate implements Serializable {
+public class SandERealEstate {
 	
 	public static Scanner input = new Scanner (System.in);
 
@@ -69,10 +69,11 @@ public class SandERealEstate implements Serializable {
         	else if(menuInput == 7) {
         		displayApplication();
         	}*/
-        	
+
         	else if(menuInput == 8) {
         		System.out.println("$$$ Program Terminated $$$");
         		System.exit(0);
+				input.close();
         	}
         	
         	else if(menuInput > 8) {
@@ -80,9 +81,7 @@ public class SandERealEstate implements Serializable {
         		menu();
         	}
         	
-        } while(menuInput != 8);
-        input.close();
-        
+        } while(true);
 	}
 	
 	
@@ -103,6 +102,9 @@ public class SandERealEstate implements Serializable {
 		
 		else if(customerType.equals("buyer") || customerType.equals("renter"))
 			new Buyer(customerName, emailId, customerType);
+
+		else
+			menu();
 
 		return true;
 	}
