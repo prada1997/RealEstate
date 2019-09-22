@@ -6,9 +6,9 @@ public class BranchManager extends Employee
 	
 	
 
-	public BranchManager(String ename, String email, String emptype, String address, long mobno, String eid,String designation) 
+	public BranchManager(String employeeName, String email, String designation, String emptype)
 	{
-	super(ename, eid, emptype,designation, address, mobno , email);
+	super(employeeName, email, designation, emptype);
 		int test = 0;
 	}
 	

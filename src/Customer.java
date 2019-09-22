@@ -1,26 +1,29 @@
-import java.io.IOException;
-
+import java.io.Serializable;
 import java.util.Random;
 
-public class Customer
+public class Customer implements Serializable
 {
 	private String customerName;
 	private String emailID;	
 	private String customerType;
-	private String uniqueID;
-	private int randNum;
-				
-	protected Customer(String customerName,String emailID,String customerType) throws IOException {
+	private String customerId;
+
+	protected Customer() {
+
+	}
+
+
+	protected Customer(String customerName,String emailID,String customerType) {
 		this.customerName = customerName;
 		this.emailID = emailID;
 		this.customerType = customerType;
-		this.uniqueID = customerType.substring(0,3)+generateID();        	
-		new Record(this);
-	}	
-	
-	public int generateID() 
-	{			
-		Random rand = new Random();	 	
+		this.customerId = customerType.substring(0,3)+generateID();
+	}
+
+
+	public int generateID()
+	{	int randNum;
+		Random rand = new Random();
 		randNum = rand.nextInt(100);
 		return randNum;
 	}
@@ -30,17 +33,22 @@ public class Customer
 		String details = "customerName =" + customerName +
 						"\nemailID =" + emailID +
 						"\ncustomerType =" + customerType +
-						"\nuniqueID =" + uniqueID;
+						"\nuniqueID =" + customerId;
 	
 		return details;
 	}
+
 	
-	public String getUniqueID() {
-		return uniqueID;
+	public String getCustomerId() {
+		return customerId;
 	}
 	
 	public String getCustomerType() {
 		return customerType;
+	}
+
+	public String getEmailID() {
+		return emailID;
 	}
 
 	public String getCustomerName() {

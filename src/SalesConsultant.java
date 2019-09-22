@@ -5,10 +5,9 @@ public class SalesConsultant extends Employee
 	private double Bonus;
 	private Sales[] SProperty;
 	
-	public SalesConsultant(String ename, String id, String type, String designation, String addr
-			,long mobno,String emailid, float nofohours) 
+	public SalesConsultant(String employeeName, String email, String designation, String emptype)
 	{
-		super(ename, id, type, designation, addr, mobno, emailid, nofohours);
+		super(employeeName, email, designation, emptype);
 		// TODO Auto-generated constructor stub
 	}
 

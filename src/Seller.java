@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Seller extends Customer implements Serializable
 {
-	//private ArrayList<Property> property = new ArrayList<Property>();
 	private HashMap<String, Property> property = new HashMap<String, Property>();
 	
 	protected Seller(String customerName,String emailID,String customerType) throws IOException {
@@ -50,10 +49,10 @@ public class Seller extends Customer implements Serializable
 	        double dur = scan.nextDouble();
 	        
 	        p = new Rental(propertyName, add,sub,cap,type,mfee,ramount,dur);
-	         
 	        property.put(propertyName, p);
 		}
 	}
+
 
 	public Property searchproperty (String propertyName) {
 		
@@ -64,6 +63,7 @@ public class Seller extends Customer implements Serializable
 		
 		return null;
 	}
+
 	
 	public void showApplication() {
 		for (String key : property.keySet()) {

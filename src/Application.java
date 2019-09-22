@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Application 
 {
+	//int to double
 	double income;
 	String PastOccupation;
 	String CurrentOccupation;
@@ -10,7 +11,6 @@ public class Application
 	
 	public Application(double income, String PastOccupation, String CurrentOccupation, int PastRental,int CurrentRental) 
 	{
-		int test=0;
 		this.income = income;
 		this.PastOccupation = PastOccupation;
 		this.CurrentOccupation = CurrentOccupation;
@@ -20,8 +20,7 @@ public class Application
 	
 	public void Pastoccupation() 
 	{
-		
-		int i=0;
+
 	}
 	
 	

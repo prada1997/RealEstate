@@ -4,10 +4,9 @@ public class PropertyManager extends Employee
 
 	Rental[] RProperty;
 	
-	public PropertyManager(String ename, String eid, String emptype, String designation, 
-			String address, long mobno, String email) 
+	public PropertyManager(String employeeName, String email, String designation, String emptype)
 	{
-		super(ename, eid, emptype, designation, address, mobno, email);
+		super(employeeName, email, designation, emptype);
 	
 	}
 
