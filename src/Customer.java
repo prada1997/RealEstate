@@ -10,7 +10,6 @@ public class Customer
 				
 	public Customer(String customerName,String emailID,String customerType)
 	{
-					
 		this.customerName = customerName;
 		this.emailID = emailID;
 		this.customerType = customerType;
