@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BranchManager extends Employee 
+public class BranchManager extends Employee implements Serializable
 {
 	public ArrayList<Property> property = new ArrayList<Property>();// i have created this coz array list can only be referenced in the class in whihc it is created
 	
@@ -9,7 +10,6 @@ public class BranchManager extends Employee
 	public BranchManager(String employeeName, String email, String designation, String emptype)
 	{
 	super(employeeName, email, designation, emptype);
-		int test = 0;
 	}
 	
 	

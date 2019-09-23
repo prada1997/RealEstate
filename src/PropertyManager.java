@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class PropertyManager extends Employee
+public class PropertyManager extends Employee implements Serializable
 {
 
 	Rental[] RProperty;

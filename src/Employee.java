@@ -1,8 +1,8 @@
 import java.io.Serializable;
+import java.util.Random;
 
 public class Employee implements Serializable
 {
-	
 	// VARIABLES TO STORE DETAILS OF AN EMPLOYEE
 	private String employeeName;
 	private String email;
@@ -24,12 +24,18 @@ public class Employee implements Serializable
 		this.employeeName = employeeName;
 		this.email = email;
 		this.emptype = emptype;
-		//this.eid = eid;
-		this.designation=designation;
+		this.eid = employeeName.substring(0,3) + generateID();
+		this.designation = designation;
 		//this.hrs=hrs;
 		
 	}
 
+    public int generateID()
+    {	int randNum;
+        Random rand = new Random();
+        randNum = rand.nextInt(100);
+        return randNum;
+    }
 		
 	
 public String getEid() 

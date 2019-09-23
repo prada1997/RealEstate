@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class SalesConsultant extends Employee 
+public class SalesConsultant extends Employee implements Serializable
 {
 
 	private double Bonus;
