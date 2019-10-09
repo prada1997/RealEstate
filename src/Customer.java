@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.Random;
 
-public class Customer implements Serializable
+public abstract class Customer implements Serializable
 {
 	private String customerName;
 	private String emailID;	
@@ -55,4 +55,7 @@ public class Customer implements Serializable
 		return customerName;
 	}
 
+	public void setCustomerId (String customerId) {
+		this.customerId = customerId;
+	}
 }

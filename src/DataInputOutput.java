@@ -18,7 +18,7 @@ public class DataInputOutput implements Serializable {
         }
 }
 
-    /*public Customer fetchingCustomer(String fileName) {
+    public Customer fetchingCustomer(String fileName) {
         try {
             ObjectInputStream input = new ObjectInputStream(
                     new FileInputStream("data/Customers/" + fileName + ".txt"));
@@ -29,7 +29,7 @@ public class DataInputOutput implements Serializable {
         }
 
         return null;
-    }*/
+    }
 
 
     public void storingEmployee(Employee obj) {

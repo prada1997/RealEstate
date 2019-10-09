@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -50,6 +49,7 @@ public class Record implements Serializable {
     public HashMap<String, Employee> getEmployeeRecord() {
         return employeeRecord;
     }
+
 
     public void setEmployeeRecord(HashMap<String, Employee> employeeRecord) {
         Record.employeeRecord = employeeRecord;

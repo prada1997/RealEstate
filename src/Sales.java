@@ -6,9 +6,9 @@ public class Sales extends Property
 	private double DownPayment = minprice * 0.1;
 	//private HashMap<String , >
 	
-	public Sales(String propertyName, String address, String suburb, String capacity, String type, double minprice) 
+	public Sales(String address, String suburb, String capacity, String type, double minprice)
 	{
-		super(propertyName, address, suburb, capacity, type);
+		super( address, suburb, capacity, type);
 		this.minprice = minprice;
 	}
 	

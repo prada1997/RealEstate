@@ -18,26 +18,30 @@ public class Seller extends Customer implements Serializable
 		Property p;
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("Enter the name of the Property");
-		String propertyName = scan.next();
-		System.out.println("Please specify the property category(For Sales Or Rental) : ");
-		String category = scan.next();		
+//		System.out.println("Enter the name of the Property");
+//		String propertyName = scan.next();
+
 		System.out.println("Enter the address : ");
 		String add = scan.next();
+
 		System.out.println("Enter the suburb : ");
 		String sub = scan.next();
+
 		System.out.println("Enter the capacity : ");
 		String cap = scan.next();
+
 		System.out.println("Enter the type : ");
 		String type = scan.next();
+
+		System.out.println("Please specify the property category(For Sales Or Rental) : ");
+		String category = scan.next();
 		
-		if (category.equalsIgnoreCase("sales"))
-				{
-			         System.out.println("Enter the minimum price : ");
-			         double min = scan.nextDouble();
-			         p = new Sales(propertyName,add,sub,cap,type,min);
+		if (category.equalsIgnoreCase("sales")) {
+			System.out.println("Enter the minimum price : ");
+			double min = scan.nextDouble();
+			new Sales(add,sub,cap,type,min);
 			         
-			         property.put(propertyName, p);
+			         //property.put(propertyName, p);
 				}
 		else if (category.equalsIgnoreCase("rental"))
 		{
@@ -48,8 +52,13 @@ public class Seller extends Customer implements Serializable
 	        System.out.println("Enter the stay duration : ");
 	        double dur = scan.nextDouble();
 	        
-	        p = new Rental(propertyName, add,sub,cap,type,mfee,ramount,dur);
-	        property.put(propertyName, p);
+	        p = new Rental( add,sub,cap,type,mfee,ramount,dur);
+	        //property.put(propertyName, p);
+		}
+		else {
+			System.out.println("Please enter the correct category for the property." +
+					" \nFor example: Sales or Rental ");
+			addProperty();
 		}
 	}
 

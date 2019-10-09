@@ -26,34 +26,4 @@ public class Buyer extends Customer implements Serializable {
 		while (ans.equalsIgnoreCase("Yes"));
 	}
 
-	public String addApplication() {
-		Scanner scan = new Scanner(System.in);
-		Application a;
-
-		System.out.println("Enter property name for application:");
-		String propertyName = scan.next();
-		System.out.println("Enter your income: ");
-		double in = scan.nextDouble();
-		System.out.println("Enter your past occupation: ");
-		String occ = scan.next();
-		System.out.println("Enter your current occupation: ");
-		String cocc = scan.next();
-		System.out.println("Enter your past rental: ");
-		int prent = scan.nextInt();
-		System.out.println("Enter your current rental: ");
-		int crent = scan.nextInt();
-
-		a = new Application(in, occ, cocc, prent, crent);
-
-
-//		for(int i=0 ; i<application.size();i++)
-//        {
-//       	 if(application.get(i) == null)
-//       	 {
-//       		 application.add(a);
-//       		 break;
-//       	 }
-//        }
-		return propertyName;
-	}
 }

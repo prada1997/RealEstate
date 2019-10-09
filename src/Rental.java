@@ -7,9 +7,9 @@ public class Rental extends Property
 	
 	
 	
-	public Rental(String propertyName, String address, String suburb, String capacity, String type, double Mfee, double RAmt, double Dur) 
+	public Rental( String address, String suburb, String capacity, String type, double Mfee, double RAmt, double Dur)
 	{
-		super(propertyName, address, suburb, capacity, type);
+		super( address, suburb, capacity, type);
 		this.ManagementFee = Mfee;
 		this.RentalAmt = RAmt;
 		this.CDuration = Dur;

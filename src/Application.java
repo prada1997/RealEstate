@@ -6,10 +6,10 @@ public class Application
 	double income;
 	String PastOccupation;
 	String CurrentOccupation;
-	int PastRental;
-	int CurrentRental;
+	double PastRental;
+	double CurrentRental;
 	
-	public Application(double income, String PastOccupation, String CurrentOccupation, int PastRental,int CurrentRental) 
+	public Application(double income, String PastOccupation, String CurrentOccupation, double PastRental, double CurrentRental)
 	{
 		this.income = income;
 		this.PastOccupation = PastOccupation;
