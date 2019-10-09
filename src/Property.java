@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Property 
+public abstract class Property implements Serializable
 {	
-	private int propertId;
+	private String propertyName;
 	private String address;
 	private String suburb;
 	private String capacity;
@@ -13,41 +14,46 @@ public class Property
 	private int enteries = 1;
 	private String propertyStatus;
 	private boolean IsAssign = false;
-	PropertyManager Emp;
-	
-	public Property(String address, String suburb, String capacity, String type)
+	PropertyManager Employee;
+	Customer owner;
+
+
+	public Property(String ownerID, String pName, String address, String suburb, String capacity, String type)
 	{
+		String ID = ownerID;
+		this.owner = new Record().getCustomerRecord().get(ID);
+
+		this.propertyName = pName;
 		this.address = address;
 		this.suburb = suburb;
 		this.capacity = capacity;
 		this.type = type;
-		propertId =  generateID();
+		propertyStatus = "Listed";
 	}
 
-
-	public int generateID()
-	{	int randNum;
-		Random rand = new Random();
-		randNum = rand.nextInt(100);
-		return randNum;
-	}
 	
-	public boolean addingAplication(Application obj) {
-		
-		application.put(1, obj);
-		
-//		for(int i=0 ; i<application.size();i++)
-//        {
-//       	 if(application.get(i) == null)
-//       	 {
-//       		 application.add(obj);
-//       		 break;
-//       	 }
-//        }
-		
+	public boolean addingApplication(Application obj) {
+
+		application.put(enteries, obj);
+		enteries++;
 		return true;
 	}
-	
+
+
+	public Customer getOwner() {
+		return owner;
+	}
+
+	public HashMap<Integer, Application> getApplication() {
+		return application;
+	}
+
+	public Application fetchApplication(int i) {
+		return application.get(i);
+	}
+
+	public abstract boolean formalOffer();
+
 	public String showApplication() {
 		String details = "\n";
 		 
@@ -56,5 +62,17 @@ public class Property
 			return details;
 		}
 		return "no application";
+	}
+
+	public String getPropertyStatus() {
+		return propertyStatus;
+	}
+
+	public void setPropertyStatus(String propertyStatus) {
+		this.propertyStatus = propertyStatus;
+	}
+
+	public String getPropertyName() {
+		return propertyName;
 	}
 }

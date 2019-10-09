@@ -1,24 +1,26 @@
 import java.io.IOException;
+import java.sql.SQLOutput;
+import java.util.HashMap;
 import java.util.Scanner;
+//import customerExceptions.*;
 
 public class SandERealEstate {
 
 	private static Scanner input = new Scanner (System.in);
 
-	public static void main(String[] args) {
-	    try {
+	public static void main(String[] args) throws Exception {
+
 
 	    	new Record("start");
 	    	recordFetch();
 	    	typeOfUser(2);
-        }
-	    catch (Exception e){
-	        e.printStackTrace();
-        }
+			//customerOperations();
+
+
 	}
 
 
-//    public static int userOperations() throws IOException, ClassNotFoundException, EmailValidationException, InvalidUser, UserNotExist {
+//    public static int userOperations() throws IOException, ClassNotFoundException, customerExceptions.EmailValidationException, customerExceptions.InvalidUser, customerExceptions.UserNotExist {
 //        int menuInput = 0;
 //
 //        do{
@@ -52,7 +54,7 @@ public class SandERealEstate {
 //    }
 
 
-	public static void typeOfUser(int userOperation) throws IOException, ClassNotFoundException, EmailValidationException, InvalidUser, UserNotExist {
+	public static void typeOfUser(int userOperation) throws Exception {
 		int menuInput;
 
 		do {
@@ -60,6 +62,7 @@ public class SandERealEstate {
 					+ "1: Add Customer \n"
 					+ "2: Add Employee\n"
 					+ "3. Exit \n"
+					+ "4. All Customer \n"
 					+ "Enter your Choice: ");
 			menuInput = input.nextInt();
 
@@ -114,6 +117,20 @@ public class SandERealEstate {
 					programTermination();
 					input.close();
 				}
+			else if (menuInput == 4){
+				HashMap<String, Customer> list = new Record().getCustomerRecord();
+
+				for(String key : list.keySet()){
+					System.out.println(list.get(key).getCustomerName() + "\t" + list.get(key).getCustomerId()+
+							"\t" + list.get(key).getCustomerType());
+				}
+
+				System.out.println("Enter Customer Id to switch user");
+				String input = new Scanner(System.in).next().toLowerCase();
+				customerOperations(new Record().getCustomerRecord().get(input));
+
+
+			}
 			else if (menuInput > 3) {
 					System.out.println("Enter Correct Choice.");
 					typeOfUser(userOperation);
@@ -124,7 +141,7 @@ public class SandERealEstate {
 		}
 
 
-//	public static Customer checkCustomerUser(String emailId, String customerName) throws UserNotExist {
+//	public static Customer checkCustomerUser(String emailId, String customerName) throws customerExceptions.UserNotExist {
 //		try {
 //			Customer obj = new Record().getCustomerRecord().get(emailId);
 //			if (obj.getEmailID().equals(emailId) || obj.getCustomerName().equals(customerName)) {
@@ -132,7 +149,7 @@ public class SandERealEstate {
 //			}
 //		}
 //		catch (Exception e){
-//			throw new UserNotExist("User does not exist.");
+//			throw new customerExceptions.UserNotExist("User does not exist.");
 //		}
 //		return null;
 //	}
@@ -154,15 +171,17 @@ public class SandERealEstate {
 //	}
 
 
-	public static void customerOperations(Customer obj) throws InvalidUser {
+	public static void customerOperations(Customer obj) throws Exception {
 
 		int menuInput;
 
 		do{
 			System.out.println("\n S&E Real Estate \n Menu Options \n"
 					+ "1: Add Property \n"
-					+ "2: Edit Property \n"
+					+ "2: Accept or Reject Property Application \n"
 					+ "3: Add Application \n"
+					+ "6: View Application Status"
+					+ "5: BACK\n"
 					+ "4. Exit \n"
 					+ "Enter your Choice: ");
 			menuInput = input.nextInt();
@@ -174,9 +193,17 @@ public class SandERealEstate {
 				}
 			}
 
-			else if(menuInput == 2){
-
-				//editProperty();
+			else if(menuInput == 2) {
+				String returnMessage = acceptRejectPropertyApplication(obj);
+				if (returnMessage.equals("completed")) {
+					System.out.println("Completed Back to Menu");
+				}
+				else if(returnMessage.equals("wrongUser")) {
+					System.out.println("Wrong user, cant access this feature.");
+				}
+				else if(returnMessage.equals("back")){
+					customerOperations(obj);
+				}
 			}
 
         	else if(menuInput == 3) {
@@ -191,6 +218,19 @@ public class SandERealEstate {
 				input.close();
 			}
 
+			else if(menuInput == 5){
+				typeOfUser(2);
+			}
+
+			else if(menuInput == 6){
+				if(obj.getCustomerType().equals("buyer") ||
+						obj.getCustomerType().equals("renter") ) {
+
+					((Buyer) obj).applicationStatus();
+				}
+				else
+					System.out.println("you dont have access to this feature.");
+			}
 			else if(menuInput > 4) {
 				System.out.println("Enter Correct Choice.");
 				customerOperations(obj);
@@ -200,7 +240,7 @@ public class SandERealEstate {
 	}
 
 
-	public static Customer addCustomer() throws IOException, EmailValidationException{
+	public static Customer addCustomer() throws Exception {
 
 			System.out.println("Enter your Name:");
 			String customerName = input.next();
@@ -232,8 +272,8 @@ public class SandERealEstate {
 					addCustomer();
 				}
 			}
-			else
-				throw new EmailValidationException("Wrong email ID address.");
+			//else
+				//throw new EmailValidationException("Wrong email ID address.");
 			return null;
 
 	}
@@ -244,8 +284,7 @@ public class SandERealEstate {
 		if(obj.getCustomerType().equals("landlord") ||
 				obj.getCustomerType().equals("vendor") ) {
 
-			Seller object = (Seller) obj;
-			object.addProperty();
+			((Seller) obj).addProperty();
 		}
 				
 		else {
@@ -257,41 +296,37 @@ public class SandERealEstate {
 	}
 
 
-	public static boolean addApplication(Customer obj) throws InvalidUser {
+	public static boolean addApplication(Customer obj) throws Exception {
 
 		if(obj.getCustomerType().equals("buyer") ||
 				obj.getCustomerType().equals("renter") ) {
 
-		    for(String key : new Record().getCustomerRecord().keySet() ){
-                if(obj.getCustomerType().equals("vendor") ||
-                        obj.getCustomerType().equals("landlord") ) {
-
-                }
-            }
-
-//			System.out.println("Enter property name for application:");
-//			String propertyName = input.next();
-			System.out.println("Enter your income: ");
-			double income = input.nextDouble();
-			System.out.println("Enter your past occupation: ");
-			String pastOccupation = input.next();
-			System.out.println("Enter your current occupation: ");
-			String currentOccupation = input.next();
-			System.out.println("Enter your past rental: ");
-			double pastRental = input.nextDouble();
-			System.out.println("Enter your current rental: ");
-			double currentRental = input.nextDouble();
-
-			new Application(income, pastOccupation, currentOccupation, pastRental, currentRental);
+			((Buyer) obj).addApplication();
 		}
 
 		else {
-			throw new InvalidUser("Wrong user, cant add application");
+			//throw new InvalidUser("Wrong user, cant add application");
 			//System.out.println("You cant add Application, you are not buyer or renter.");
 			//return false;
 		}
 
 		return true;
+	}
+
+
+	public static String acceptRejectPropertyApplication(Customer obj){
+		if(obj.getCustomerType().equals("landlord") ||
+				obj.getCustomerType().equals("vendor") ) {
+
+			if( ((Seller) obj).acceptOrRejectOffer()){
+				return "completed";
+			}
+			else
+				return "back";
+		}
+
+		else
+		return "wrongUser";
 	}
 
 
@@ -399,7 +434,7 @@ public class SandERealEstate {
         try {
 
             System.out.println(new Record().getCustomerRecord().entrySet());
-            //System.out.println(object.getCustomerRecord().entrySet());
+            System.out.println(new Record().getPropertyRecord().entrySet());
             System.out.println(new Record().getEmployeeRecord().entrySet());
         }
         catch (Exception e){

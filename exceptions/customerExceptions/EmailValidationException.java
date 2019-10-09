@@ -1,6 +1,8 @@
+package customerExceptions;
+
 public class EmailValidationException extends Exception {
 
-    protected EmailValidationException(String errorMessage){
+    public EmailValidationException(String errorMessage){
         super(errorMessage);
         System.out.println("Wrong email ID address.");
     }

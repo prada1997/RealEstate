@@ -1,5 +1,7 @@
+package customerExceptions;
+
 public class InvalidUser extends Exception {
-    protected InvalidUser(String message){
+    public InvalidUser(String message){
         super(message);
     }
 }

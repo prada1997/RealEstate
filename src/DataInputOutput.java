@@ -60,6 +60,21 @@ public class DataInputOutput implements Serializable {
         return null;
     }*/
 
+    public void storingProperty(Property obj) {
+        try {
+            ObjectOutputStream output = new ObjectOutputStream(
+                    new FileOutputStream("data/Properties/" + obj.getPropertyName() + ".txt"));
+            output.writeObject(obj);
+            output.flush();
+            output.close();
+        }
+
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+
     public void storingCustomerRecord(HashMap<String, Customer> obj) {
         try {
             ObjectOutputStream output = new ObjectOutputStream(
@@ -76,7 +91,7 @@ public class DataInputOutput implements Serializable {
     }
 
 
-    public HashMap<String, Customer> fetchingCustomerRecord( ) {
+    public HashMap fetchingCustomerRecord( ) {
         try{
             ObjectInputStream input = new ObjectInputStream(
                     new FileInputStream("data/CustomerRecord.txt"));
@@ -121,5 +136,37 @@ public class DataInputOutput implements Serializable {
 
         return null;
     }
+
+
+    public void storingPropertyRecord(HashMap<String, Property> obj) {
+        try {
+            ObjectOutputStream output = new ObjectOutputStream(
+                    new FileOutputStream("data/PropertyRecord.txt"));
+
+            output.writeObject(obj);
+            output.flush();
+            output.close();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public HashMap fetchingPropertyRecord( ) {
+        try{
+            ObjectInputStream input = new ObjectInputStream(
+                    new FileInputStream("data/PropertyRecord.txt"));
+
+            return (HashMap) input.readObject();
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 }

@@ -38,7 +38,8 @@ public abstract class Customer implements Serializable
 		return details;
 	}
 
-	
+	//public abstract boolean acceptOrRejectOffer();
+
 	public String getCustomerId() {
 		return customerId;
 	}

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Application 
+public class Application implements Serializable
 {
 	//int to double
 	double income;
@@ -8,17 +9,30 @@ public class Application
 	String CurrentOccupation;
 	double PastRental;
 	double CurrentRental;
+	String customerID;
+	String propertyName;
+	String applicationStatus;
 	
-	public Application(double income, String PastOccupation, String CurrentOccupation, double PastRental, double CurrentRental)
+	public Application(String customerID, String propertyName, double income, String PastOccupation, String CurrentOccupation, double PastRental, double CurrentRental)
 	{
+		this.customerID = customerID;
 		this.income = income;
 		this.PastOccupation = PastOccupation;
 		this.CurrentOccupation = CurrentOccupation;
 		this.PastRental = PastRental;
 		this.CurrentRental = CurrentRental;
+		applicationStatus = "Decision Pending";
 	}
-	
-	public void Pastoccupation() 
+
+	public void setApplicationStatus(String applicationStatus) {
+		this.applicationStatus = applicationStatus;
+	}
+
+	public String getApplicationStatus() {
+		return applicationStatus;
+	}
+
+	public void Pastoccupation()
 	{
 
 	}
