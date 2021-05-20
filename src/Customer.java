@@ -4,10 +4,9 @@ import java.util.Random;
 public abstract class Customer implements Serializable
 {
 	private String customerName;
-	private String emailID;	
-	private String customerType;
+	private String emailID;
 	private String customerId;
-
+	private String customerType;
 	protected Customer() {
 
 	}
@@ -27,29 +26,19 @@ public abstract class Customer implements Serializable
 		randNum = rand.nextInt(100);
 		return randNum;
 	}
-	
-	public String ShowDetails() 
-	{
-		String details = "customerName =" + customerName +
-						"\nemailID =" + emailID +
-						"\ncustomerType =" + customerType +
-						"\nuniqueID =" + customerId;
-	
-		return details;
-	}
 
-	//public abstract boolean acceptOrRejectOffer();
+
 
 	public String getCustomerId() {
 		return customerId;
 	}
-	
-	public String getCustomerType() {
-		return customerType;
-	}
 
 	public String getEmailID() {
 		return emailID;
+	}
+
+	public String getCustomerType() {
+		return customerType;
 	}
 
 	public String getCustomerName() {
@@ -59,4 +48,5 @@ public abstract class Customer implements Serializable
 	public void setCustomerId (String customerId) {
 		this.customerId = customerId;
 	}
+
 }

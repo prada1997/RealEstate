@@ -1,33 +1,39 @@
 import java.io.Serializable;
 import java.util.Random;
 
-public class Employee implements Serializable
+public abstract class Employee implements Serializable
 {
 	// VARIABLES TO STORE DETAILS OF AN EMPLOYEE
 	private String employeeName;
 	private String email;
-	private String emptype;
+	private String employeeType;
 	private String designation;
-	private String eid;
-	private static float hrs;
-	
+	private String employeeID;
+	private double Salary;
+	private boolean isAssign;
+	private double workingHour;
+
 	protected Employee()
 	{
 		
 	}
 
+	public double getWorkingHour() {
+		return workingHour;
+	}
 
-	// THIS CONSTUCTOR IS CREATED TO INITIALIZE  THE DETAILS OF A PART TIME EMPLOYEE 
-	protected Employee(String employeeName, String email, String designation, String emptype)
+	protected Employee(String employeeName, String email, String designation, String empType)
 	{
 		
 		this.employeeName = employeeName;
 		this.email = email;
-		this.emptype = emptype;
-		this.eid = employeeName.substring(0,3) + generateID();
+		this.employeeType = empType;
+		if(empType.equals("full time")){
+			workingHour = 80;
+		}
+		this.employeeID = employeeName.substring(0,3) + generateID();
 		this.designation = designation;
-		//this.hrs=hrs;
-		
+		isAssign = false;
 	}
 
     public int generateID()
@@ -36,17 +42,23 @@ public class Employee implements Serializable
         randNum = rand.nextInt(100);
         return randNum;
     }
-		
-	
-public String getEid() 
+
+	public void setSalary(double salary) {
+		Salary = salary;
+	}
+
+	public String getEmployeeID()
 {
-	return eid;
+	return employeeID;
 }
 
+	public boolean isAssign() {
+		return isAssign;
+	}
 
-public void setEid(String eid) 
+	public void setEmployeeID(String employeeID)
 {
-	this.eid = eid;
+	this.employeeID = employeeID;
 }
 
 
@@ -74,15 +86,15 @@ public void setEmail(String email)
 }
 
 
-public String getEmptype() 
+public String getEmployeeType()
 {
-	return emptype;
+	return employeeType;
 }
 
 
-public void setEmptype(String emptype) 
+public void setEmployeeType(String employeeType)
 {
-	this.emptype = emptype;
+	this.employeeType = employeeType;
 }
 
 
@@ -100,16 +112,8 @@ public void setDesignation(String designation) {
 
 public String getDetails()
 {
-	
-	if(emptype.toUpperCase().equals("FULL TIME"))
-	{
-		return "Employee name" + ":" + employeeName +"\n " + "Employee email" + ":"+ email + "\n" + "Employee type" + " :"
-				+ emptype + "\n" + " Employee address" +" :" +"\n" + " Employee id" + ":" + eid + "\n ";
-	}
-	else
-	{
-		return "Employee name" + ":" + employeeName +"\n " + "Employee email" + ":"+ email + "\n" + "Employee type" + " :"
-				+ emptype + "\n" + " Employee id" + ":" + eid + "\n"+ "Hours Worked"+ ":"+hrs;
+		return "Employee name" + ": " + employeeName +"\n " + "Employee email" + ": "+ email + "\n" + "Employee type" + " : "
+				+ employeeType + "\n" + " Employee id" + ": " + employeeID + "\n"+ "Salary: " + Salary;
 
 
 	}
@@ -117,6 +121,3 @@ public String getDetails()
 
 }
 
-
-
-}

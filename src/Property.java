@@ -1,37 +1,67 @@
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Random;
 
 public abstract class Property implements Serializable
-{	
+{
+	private static final long serialVersionUID = 2L;
 	private String propertyName;
+	private String capacity;
 	private String address;
 	private String suburb;
-	private String capacity;
-	private String type;
 
 	private HashMap<Integer, Application> application = new HashMap<Integer, Application>();
+	private HashMap<String, String> Inspection = new HashMap<String, String>();
 	private int enteries = 1;
 	private String propertyStatus;
 	private boolean IsAssign = false;
-	PropertyManager Employee;
-	Customer owner;
 
 
-	public Property(String ownerID, String pName, String address, String suburb, String capacity, String type)
+	public Property(String pName, String address, String suburb, String capacity)
 	{
-		String ID = ownerID;
-		this.owner = new Record().getCustomerRecord().get(ID);
-
-		this.propertyName = pName;
 		this.address = address;
 		this.suburb = suburb;
+		this.propertyName = pName;
 		this.capacity = capacity;
-		this.type = type;
 		propertyStatus = "Listed";
+		initializeInspection();
 	}
 
-	
+	public void initializeInspection() {
+		Inspection.put("10:45 - 11:00", "Not Booked");
+		Inspection.put("11:45 - 12:00", "Not Booked");
+		Inspection.put("12:45 - 13:00", "Not Booked");
+		Inspection.put("13:45 - 14:00", "Not Booked");
+		Inspection.put("14:45 - 15:00", "Not Booked");
+	}
+
+	public void setInspection(String time){
+		for(String key: Inspection.keySet())
+		{
+			if(Inspection.keySet().equals("time"))
+			{
+				Inspection.replace(Inspection.get(key), "Booked");
+			}
+		}
+	}
+
+	public void displayInspection()
+	{
+		int i = 1;
+		for(String key: Inspection.keySet())
+		{
+			System.out.print("/n " +  + i + key + " 	" + Inspection.get(key));
+			i++;
+		}
+	}
+
+	public void setAssign(boolean assign) {
+		IsAssign = assign;
+	}
+
+	public boolean isAssign() {
+		return IsAssign;
+	}
+
 	public boolean addingApplication(Application obj) {
 
 		application.put(enteries, obj);
@@ -40,29 +70,10 @@ public abstract class Property implements Serializable
 	}
 
 
-	public Customer getOwner() {
-		return owner;
-	}
-
 	public HashMap<Integer, Application> getApplication() {
 		return application;
 	}
 
-	public Application fetchApplication(int i) {
-		return application.get(i);
-	}
-
-	public abstract boolean formalOffer();
-
-	public String showApplication() {
-		String details = "\n";
-		 
-		for( int id : application.keySet()) {
-			details = application.get(id).display();
-			return details;
-		}
-		return "no application";
-	}
 
 	public String getPropertyStatus() {
 		return propertyStatus;

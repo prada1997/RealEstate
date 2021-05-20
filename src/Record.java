@@ -19,7 +19,7 @@ public class Record implements Serializable {
     }
 
     protected Record (Employee obj) {
-        employeeRecord.put(obj.getEid(),obj);
+        employeeRecord.put(obj.getEmployeeID(),obj);
         new DataInputOutput().storingEmployee(obj);
     }
 
@@ -34,13 +34,13 @@ public class Record implements Serializable {
     protected Record(String state) {
         if (state.equals("terminate")) {
             new DataInputOutput().storingCustomerRecord(customerRecord);
-            //new DataInputOutput().storingEmployeeRecord(employeeRecord);
+            new DataInputOutput().storingEmployeeRecord(employeeRecord);
             new DataInputOutput().storingPropertyRecord(PropertyRecord);
         }
         //load file at the start of the program
         else if (state.equals("start")) {
-           setCustomerRecord(new DataInputOutput().fetchingCustomerRecord());
-//            //setEmployeeRecord(new DataInputOutput().fetchingEmployeeRecord());
+            setCustomerRecord(new DataInputOutput().fetchingCustomerRecord());
+            setEmployeeRecord(new DataInputOutput().fetchingEmployeeRecord());
             setPropertyRecord(new DataInputOutput().fetchingPropertyRecord());
         }
     }

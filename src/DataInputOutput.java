@@ -35,7 +35,7 @@ public class DataInputOutput implements Serializable {
     public void storingEmployee(Employee obj) {
         try{
             ObjectOutputStream output = new ObjectOutputStream(
-                    new FileOutputStream("data/Employees/" + obj.getEid() + ".txt"));
+                    new FileOutputStream("data/Employees/" + obj.getEmployeeID() + ".txt"));
 
             output.writeObject(obj);
             output.flush();
